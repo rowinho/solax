@@ -1,4 +1,5 @@
-from typing import Protocol, Tuple
+from numbers import Number
+from typing import List, Protocol, Tuple
 
 from voluptuous import Invalid
 
@@ -10,8 +11,7 @@ class Packer(Protocol):  # pragma: no cover
      data into one raw value
     """
 
-    def __call__(self, *vals: float) -> float:
-        ...
+    def __call__(self, *vals: float) -> float: ...
 
 
 PackerBuilderResult = Tuple[Tuple[int, ...], Packer]
@@ -24,8 +24,7 @@ class PackerBuilder(Protocol):  # pragma: no cover
     raw values to be fed to the packer
     """
 
-    def __call__(self, *indexes: int) -> PackerBuilderResult:
-        ...
+    def __call__(self, *indexes: int) -> PackerBuilderResult: ...
 
 
 def __u16_packer(*values: float) -> float:
@@ -90,3 +89,17 @@ def twoway_div100(val):
 
 def to_url(host, port):
     return f"http://{host}:{port}/"
+
+
+def contains_none_zero_value(value: List[Number]):
+    """Validate that at least one element is not zero.
+    Args:
+        value (List[Number]): list to validate
+    Raises:
+        Invalid: if all elements are zero
+    """
+
+    if isinstance(value, list):
+        if len(value) != 0 and any((v != 0 for v in value)):
+            return value
+    raise Invalid("All elements in the list are zero")
