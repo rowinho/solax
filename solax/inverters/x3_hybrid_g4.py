@@ -131,7 +131,6 @@ class X3HybridG4(Inverter):
             "Battery Remaining Energy": (
                 106,
                 Measurement(Units.KWH, storage=True),
-                #Total(Units.KWH, storage=True),
                 div10,
             ),
             #"Battery mode": (168, Units.NONE),
