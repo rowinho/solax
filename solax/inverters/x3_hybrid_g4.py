@@ -130,8 +130,8 @@ class X3HybridG4(Inverter):
             "Battery Temperature": (105, Units.C, to_signed),
             "Battery Remaining Energy": (
                 106,
-                #Measurement(Units.KWH, storage=True),
-                Total(Units.KWH, storage=True),
+                Measurement(Units.KWH, storage=True),
+                #Total(Units.KWH, storage=True),
                 div10,
             ),
             #"Battery mode": (168, Units.NONE),
